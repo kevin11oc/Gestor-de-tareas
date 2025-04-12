@@ -24,6 +24,6 @@ export class Task {
   @Column()
   dueDate: Date;
 
-  @ManyToOne(() => User, (user) => user.tasks) // Relación inversa correcta
+  @ManyToOne(() => User, (user) => user.tasks)
   user: User;
 }

@@ -21,7 +21,7 @@ export class AuthService {
 
     const role = dto.role || Role.USER; 
     const user = await this.usersService.create(dto.email, dto.password, role);
-    return this.getTokens(user.id, user.email, user.role); // Pasar el rol
+    return this.getTokens(user.id, user.email, user.role);
   }
 
   async login(dto: LoginDto) {
@@ -29,14 +29,14 @@ export class AuthService {
     if (!user || !(await bcrypt.compare(dto.password, user.password))) {
       throw new UnauthorizedException('Credenciales inválidas');
     }
-    return this.getTokens(user.id, user.email, user.role); // Pasar el rol
+    return this.getTokens(user.id, user.email, user.role);
   }
 
   async getTokens(userId: number, email: string, role: Role) {
-    const payload = { sub: userId, email, role }; // Incluir 'role' en el payload
+    const payload = { sub: userId, email, role };
 
     const accessToken = await this.jwtService.signAsync(payload, {
-      secret: 'ACCESS_SECRET', // usa env en producción
+      secret: 'ACCESS_SECRET',
       expiresIn: '15m',
     });
 
@@ -53,14 +53,12 @@ export class AuthService {
 
   async refreshToken(refreshToken: string) {
     try {
-      // Verificar el refresh token
       const payload = this.jwtService.verify(refreshToken, {
         secret: 'REFRESH_SECRET',
       });
 
-      // Al generar el nuevo access token, asegúrate de incluir el 'role' del payload original
       const newAccessToken = this.jwtService.sign(
-        { email: payload.email, sub: payload.sub, role: payload.role }, // Incluir 'role'
+        { email: payload.email, sub: payload.sub, role: payload.role },
         {
           secret: 'ACCESS_SECRET',
           expiresIn: '15m',

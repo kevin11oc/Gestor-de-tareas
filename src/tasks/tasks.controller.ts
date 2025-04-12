@@ -26,7 +26,7 @@ export class TasksController {
   constructor(private tasksService: TasksService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Crear una nueva tarea' }) // Documenta el endpoint
+  @ApiOperation({ summary: 'Crear una nueva tarea' }) 
   @ApiBearerAuth() 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(Role.USER, Role.ADMIN)
@@ -35,7 +35,7 @@ export class TasksController {
   }
 
   @Get()
-  @ApiOperation({ summary: 'Obtener todas las tareas' }) // Documenta el endpoint
+  @ApiOperation({ summary: 'Obtener todas las tareas' })
   @ApiBearerAuth() 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(Role.USER, Role.ADMIN)
@@ -44,7 +44,7 @@ export class TasksController {
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Obtener tarea por id' }) // Documenta el endpoint
+  @ApiOperation({ summary: 'Obtener tarea por id' })
   @ApiBearerAuth() 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(Role.USER, Role.ADMIN)
@@ -53,7 +53,7 @@ export class TasksController {
   }
 
   @Put(':id')
-  @ApiOperation({ summary: 'Actualizar una nueva tarea' }) // Documenta el endpoint
+  @ApiOperation({ summary: 'Actualizar una nueva tarea' })
   @ApiBearerAuth() 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(Role.USER, Role.ADMIN)
@@ -66,7 +66,7 @@ export class TasksController {
   }
 
   @Delete(':id')
-  @ApiOperation({ summary: 'Eliminar una nueva tarea' }) // Documenta el endpoint
+  @ApiOperation({ summary: 'Eliminar una nueva tarea' }) 
   @ApiBearerAuth() 
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles(Role.USER, Role.ADMIN)

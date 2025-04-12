@@ -59,7 +59,6 @@ export class AuthController {
 
     const newTokens = await this.authService.refreshToken(refreshToken);
 
-    // ✅ Enviar manualmente la respuesta JSON
     return res.json({ access_token: newTokens.access_token });
   }
 }

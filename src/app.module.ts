@@ -22,7 +22,7 @@ import { Task } from './tasks/tasks.entity';
         password: config.get('DATABASE_PASSWORD'),
         database: config.get('DATABASE_NAME'),
         ssl: {
-          rejectUnauthorized: false, // necesario para evitar problemas con certificados auto-firmados
+          rejectUnauthorized: false,
         },
         entities: [User, Task],
         synchronize: true,
@@ -32,7 +32,7 @@ import { Task } from './tasks/tasks.entity';
     UsersModule,
     AuthModule,
     TasksModule,
-    ],
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
